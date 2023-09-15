@@ -1,7 +1,13 @@
-import Image from "next/image";
-import Header from "./components/Header";
+"use client";
 import LinkPagesLayout from "./components/LinkPagesLayout";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return <LinkPagesLayout>Links</LinkPagesLayout>;
+  const { push } = useRouter();
+  useEffect(() => {
+    push("/links");
+  }, []);
+
+  return <></>;
 }
