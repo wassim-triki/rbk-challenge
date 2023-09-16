@@ -10,12 +10,25 @@ import { usePathname } from "next/navigation";
 import path from "path";
 import { AppContext, useUser } from "../context";
 import App from "next/app";
-
+import { motion, Variants } from "framer-motion";
 const Header = () => {
   const pathname = usePathname();
   const user = useUser();
 
   const [open, setOpen] = useState(false);
+
+  const fadeInOutVariants: Variants = {
+    open: {
+      // opacity: 1,
+      y: 0,
+      x: "-50%",
+    },
+    closed: {
+      // opacity: 0,
+      y: -250,
+      x: "-50%",
+    },
+  };
 
   const state = useContext(AppContext);
   useEffect(() => {
@@ -44,12 +57,19 @@ const Header = () => {
 
           {!inPreview && <NavLinks />}
 
-          <div className="min-w-[70vw] flex flex-col justify-between z-30 items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 rounded-3xl backdrop-blur-md py-32 p-4 sm:hidden">
+          <motion.div
+            className="min-w-[70vw] w-[95%] flex flex-col justify-between shadow-sm z-30 items-center fixed top-[77px] left-1/2 -translate-x-1/2  bg-gray-100/80 rounded-xl backdrop-blur-md p-4 sm:hidden"
+            initial="closed"
+            animate={open ? "open" : "closed"}
+            variants={fadeInOutVariants}
+            transition={{ type: "spring", bounce: 0.5, duration: 0.75 }}
+          >
             <Button
               asChild
               className="flex bg-transparent w-full"
               size={"sm"}
-              variant={"ghost"}
+              variant={pathname === "/links" ? "outline" : "ghost"}
+              onClick={() => setOpen(false)}
             >
               <Link href={"/links"}>Links</Link>
             </Button>
@@ -57,7 +77,8 @@ const Header = () => {
               asChild
               className="flex bg-transparent w-full"
               size={"sm"}
-              variant={"ghost"}
+              variant={pathname === "/profile" ? "outline" : "ghost"}
+              onClick={() => setOpen(false)}
             >
               <Link href={"/profile"}>Profile Details</Link>
             </Button>
@@ -65,13 +86,14 @@ const Header = () => {
               asChild
               className="flex bg-transparent w-full"
               size={"sm"}
-              variant={inPreview ? "default" : "outline"}
+              variant={pathname === "/preview" ? "outline" : "ghost"}
+              onClick={() => setOpen(false)}
             >
               <Link href={"/preview"}>
                 {inPreview ? "Share Link" : "Preview"}
               </Link>
             </Button>
-          </div>
+          </motion.div>
 
           <button
             onClick={() => setOpen(!open)}
