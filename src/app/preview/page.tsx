@@ -31,7 +31,8 @@ const Page = () => {
               const IconComponent = preview.icon;
 
               return (
-                <div
+                <a
+                  href={item.link}
                   style={{ backgroundColor: preview.bg }}
                   className={`w-full h-10 rounded-lg flex items-center text-white px-3 py-2 gap-2`}
                   key={index}
@@ -39,7 +40,7 @@ const Page = () => {
                   <IconComponent className="w-4 h-4" />
                   <span className="text-xs">{item.platform}</span>
                   <ArrowRight className="ml-auto w-4 h-4" />
-                </div>
+                </a>
               );
             } else {
               return (

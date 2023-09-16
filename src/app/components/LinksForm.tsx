@@ -20,6 +20,8 @@ import {
   Draggable,
   DropResult,
 } from "react-beautiful-dnd";
+
+import { motion } from "framer-motion";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "./ui/select";
 import { socialLinks } from "@/lib/data";
 import { Input } from "./ui/input";
@@ -78,6 +80,10 @@ const LinksForm = () => {
     } else {
       // Handle or display validation errors accordingly
     }
+  };
+  const fadeIn = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const handleAddItem = () => {
@@ -141,7 +147,12 @@ const LinksForm = () => {
                           {...provided.dragHandleProps}
                           className="flex flex-col gap-0 rounded-lg bg-gray-100 p-4 pt-0 "
                         >
-                          <div className="rounded-lg text-muted-foreground">
+                          <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={fadeIn}
+                            className="rounded-lg text-muted-foreground"
+                          >
                             <div className="draggable flex justify-between mb-1">
                               <Button
                                 type="button"
@@ -244,7 +255,7 @@ const LinksForm = () => {
                                 </p>
                               ))}
                             </div>
-                          </div>
+                          </motion.div>
                         </div>
                       )}
                     </Draggable>
