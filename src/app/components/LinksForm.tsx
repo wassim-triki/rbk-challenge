@@ -33,7 +33,8 @@ const getIconForPlatform = (platform: string) => {
 const LinksForm = () => {
   const { list, setList } = useItems();
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     toast({
       title: "You submitted the following values:",
       description: (
@@ -78,7 +79,7 @@ const LinksForm = () => {
         <Button onClick={handleAddItem} variant="outline" className="w-full">
           + Add new link
         </Button>
-        <form>
+        <form onSubmit={onSubmit} id="links-form">
           <div className="flex flex-col gap-5">
             <Droppable droppableId="ROOT" type="group">
               {(provided) => (

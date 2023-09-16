@@ -21,9 +21,9 @@ const LinkPagesLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="w-full h-ful border p-4 flex-1  rounded-xl bg-white ">
             <PhonePreviewContainer />
           </div>
-          <div className="w-full h-ful border psdf-4 flex-[2]  rounded-xl bg-white ">
+          <div className="w-full h-ful border psdf-4 flex-[2]  rounded-xl bg-white flex flex-col">
             {children}
-            <div className="flex justify-end pt-5 px-8 pb-9 bg-resd-500 border-t">
+            <div className="mt-auto flex justify-end pt-5 px-8 pb-9 bg-resd-500 border-t">
               <Button form={formId} className="ml-auto px-5" type="submit">
                 Save
               </Button>
