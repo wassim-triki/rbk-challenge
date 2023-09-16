@@ -105,7 +105,7 @@ const ProfileForm = () => {
                   <div className="flex-[2]">
                     <FormControl className="">
                       <Input
-                        className="!m-0 text-muted-foreground"
+                        className="!m-0 text-muted-foreground transition"
                         placeholder={placeholder}
                         {...field}
                       />
