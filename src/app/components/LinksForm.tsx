@@ -69,11 +69,10 @@ const LinksForm = () => {
       setSavedList(JSON.parse(JSON.stringify(list)));
 
       toast({
-        title: "You submitted the following values:",
         description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(list, null, 2)}</code>
-          </pre>
+          <div className="w-[340px] rounded-lg">
+            <p>Your changes have been successfully saved!</p>
+          </div>
         ),
       });
     } else {

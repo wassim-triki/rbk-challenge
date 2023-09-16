@@ -23,7 +23,7 @@ const PhonePreviewContainer = () => {
         height={1080}
         quality={100}
       />
-      <div className="bg-red-500/50 absolute inset-0 w-2/5 sm:w-full h-full sm:p-10 p-0 flex flex-col gap-[3.25rem] mx-auto">
+      <div className="bg-resd-500/50 absolute inset-0 w-2/5 sm:w-full h-full sm:p-10 p-0 flex flex-col gap-[3.25rem] mx-auto">
         <Avatar />
         <div className="flex flex-col gap-4">
           {Array.from({ length: 5 }).map((_, index) => {

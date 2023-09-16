@@ -44,7 +44,7 @@ const Header = () => {
 
           {!inPreview && <NavLinks />}
 
-          <div className="min-w-[70vw] flex flex-col justify-between z-30 items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 rounded-3xl backdrop-blur-md py-32 p-4">
+          <div className="min-w-[70vw] flex flex-col justify-between z-30 items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 rounded-3xl backdrop-blur-md py-32 p-4 sm:hidden">
             <Button
               asChild
               className="flex bg-transparent w-full"
