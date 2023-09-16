@@ -9,8 +9,8 @@ const NavLinks = () => {
   const router = useRouter();
   const pathname = usePathname();
   useEffect(() => {
-    console.log(router, pathname);
-  }, [router, pathname]);
+    console.log(pathname);
+  }, [pathname]);
 
   const links = [
     {
