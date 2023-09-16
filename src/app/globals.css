@@ -51,8 +51,9 @@
   }
 }
 
-.draggable + button > span {
+.draggable + div > button {
   display: flex;
   align-items: center;
+  justify-items: start;
   gap: 0.5rem;
 }

@@ -75,7 +75,12 @@ const LinksForm = () => {
       ),
     });
   };
-
+  const getIconForPlatform = (platform: string) => {
+    const socialLinkItem = socialLinks.find(
+      (item) => item.platform === platform
+    );
+    return socialLinkItem ? socialLinkItem.icon : null;
+  };
   const handleAddItem = () => {
     append({ platform: SocialPlatforms.Github, link: "" });
   };
@@ -98,10 +103,10 @@ const LinksForm = () => {
               className="flex flex-col gap-0 rounded-lg bg-gray-100 p-4 pt-0 first:mt-5"
             >
               <div className="rounded-lg text-muted-foreground">
-                <div className="draggable text-sm flex justify-between">
+                <div className="draggable  flex justify-between">
                   <Button
                     type="button"
-                    className="flex p-0 items-center gap-1"
+                    className="flex text-xs font-bold p-0 items-center gap-1"
                     variant="ghost"
                   >
                     <Bars2Icon className="w-4 h-4" />
@@ -111,34 +116,54 @@ const LinksForm = () => {
                   <Button
                     type="button"
                     onClick={() => remove(index)}
-                    className="font-light p-0"
+                    className="text-xs p-0"
                     variant="ghost"
                   >
                     Remove
                   </Button>
                 </div>
-                <Controller
+                <FormField
                   control={control}
                   name={`links[${index}].platform`}
                   render={({ field }) => (
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
-                        {field.value || "Select platform"}
-                      </SelectTrigger>
-                      <SelectContent>
-                        {socialLinks.map(({ platform, icon: Icon }) => (
-                          <SelectItem
-                            className="flex gap-1"
-                            key={platform}
-                            value={platform}
-                            onSelect={() => field.onChange(platform)}
-                          >
-                            <Icon className="w-4 h-4" />
-                            {platform}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <FormItem>
+                      <FormLabel className="flex-1 text-muted-foreground font-normal text-xs">
+                        Platfrom
+                      </FormLabel>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          {field.value ? (
+                            <div className="flex items-center gap-2">
+                              {React.createElement(
+                                getIconForPlatform(field.value),
+                                {
+                                  className: "w-4 h-4",
+                                }
+                              )}
+                              {field.value}
+                            </div>
+                          ) : (
+                            "Select platform"
+                          )}
+                        </SelectTrigger>
+                        <SelectContent>
+                          {socialLinks.map(({ platform, icon: Icon }) => (
+                            <SelectItem
+                              className="flex gap-1"
+                              key={platform}
+                              value={platform}
+                              onSelect={() => field.onChange(platform)}
+                            >
+                              <Icon className="w-4 h-4" />
+                              {platform}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
                   )}
                 />
 
@@ -146,7 +171,10 @@ const LinksForm = () => {
                   control={control}
                   name={`links[${index}].link`}
                   render={({ field }) => (
-                    <FormItem className="flex justify-between items-center">
+                    <FormItem className="mt-1">
+                      <FormLabel className="flex-1 text-muted-foreground font-normal text-xs">
+                        Link
+                      </FormLabel>
                       <div className="flex-[2] mt-4">
                         <FormControl className="">
                           <Input
