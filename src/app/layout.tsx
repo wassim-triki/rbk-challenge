@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-muted min-h-screen p-5 ${inter.className}`}>
+      <body className={`bg-muted min-h-screen p-2 sm:p-5 ${inter.className}`}>
         <AppProvider>
           <Header />
           {children}

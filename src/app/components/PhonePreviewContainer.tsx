@@ -14,16 +14,16 @@ const PhonePreviewContainer = () => {
     console.log("saved:", savedList);
   }, [list, savedList]);
   return (
-    <div className=" m-16 relative">
+    <div className=" sm:m-16 m-0 relative">
       <Image
-        className="w-full object-cover"
+        className="w-2/5 sm:w-full object-cover mx-auto"
         src={"/iphone.png"}
         alt="iphone"
         width={1080}
         height={1080}
         quality={100}
       />
-      <div className="bg-resd-500/50 absolute inset-0 w-full h-full p-10 flex flex-col gap-[3.25rem]">
+      <div className="bg-red-500/50 absolute inset-0 w-2/5 sm:w-full h-full sm:p-10 p-0 flex flex-col gap-[3.25rem] mx-auto">
         <Avatar />
         <div className="flex flex-col gap-4">
           {Array.from({ length: 5 }).map((_, index) => {
