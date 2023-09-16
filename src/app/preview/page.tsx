@@ -5,7 +5,7 @@ import Avatar from "../components/Avatar";
 import Container from "../components/Container";
 import { linkPreviews } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
-const page = () => {
+const Page = () => {
   const { profile, setProfile } = useUser();
   const { list } = useItems();
   return (
@@ -56,4 +56,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
