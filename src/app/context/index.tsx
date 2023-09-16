@@ -6,7 +6,6 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { SocialPlatforms } from "../components/LinksForm";
 // define the props
 
 export type ProfileFormData = {
@@ -17,8 +16,11 @@ export type ProfileFormData = {
 };
 
 export type LinkItem = {
-  platform: SocialPlatforms;
+  // platform: "Github" | "Youtube" | "LinkedIn";
+  platform: string;
   link: string;
+  initIndex: number;
+  id: string;
 };
 
 type ProfileState = ProfileFormData | null;

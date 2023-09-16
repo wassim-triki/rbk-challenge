@@ -16,7 +16,7 @@ const PhonePreviewContainer = () => {
         height={1080}
         quality={100}
       />
-      <div className="bg-rsed-500/50 absolute inset-0 w-full h-full p-10 flex flex-col gap-[3rem]">
+      <div className="bg-rsed-500/50 absolute inset-0 w-full h-full p-10 flex flex-col gap-[3.25rem]">
         <div className="flex mt-3 flex-col items-center">
           {profile && profile.profilePicture instanceof File ? (
             <Image
