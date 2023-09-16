@@ -54,21 +54,21 @@ const ImageUpload = (props: any) => {
             isDragActive ? "bg-gray-400" : "bg-gray-200"
           }`}
         >
-          <div>
+          <div className="sm:flex-1">
             <label
               htmlFor={name}
               className="flex-1 text-sm text-muted-foreground font-normal"
             >
               {label}
             </label>
-            <div className="text-xs mt-6">
+            <div className="text-xs sm:hidden mt-6">
               <p>Image must be below 1024x1024px.</p>
               <p>Use PNG, JPG, or BMP format.</p>
             </div>
           </div>
 
-          <div className="flex sm:flex-[2]">
-            <div className="rounded-lg w-32 h-32 sm:w-48 sm:h-48 overflow-hidden relative">
+          <div className="flex  justify-between gap-5 sm:flex-[2] ">
+            <div className="rounded-lg sm:w-[150px] sm:h-[150px] md:w-[170px] md:h-[170px] overflow-hidden relative flex-shrink-0 ">
               <Image
                 src={
                   !!files?.length
@@ -95,7 +95,7 @@ const ImageUpload = (props: any) => {
                     <p className="hidden sm:block text-center text-sm">
                       Click or drag &apos;n&apos; drop to select image
                     </p>
-                    <p className="block sm;hidden text-center text-sm">
+                    <p className="block sm:hidden text-center text-sm">
                       Select image from gallery
                     </p>
                   </>

@@ -17,7 +17,7 @@ const LinkPagesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="">
       <Container>
-        <div className="sm:flex-row  h-full flex flex-col-reverse gsap-2  sm:gap-5 mt-2 sm:mt-5">
+        <div className="lg:flex-row  h-full flex flex-col-reverse gsap-2  sm:gap-5 mt-2 sm:mt-5">
           <div className="w-full hidden sm:block sm:h-full bordser p-4 flex-1  rounded-xl bg-white mb-2 sm:mb-0 overflow-hidden">
             <PhonePreviewContainer />
           </div>
