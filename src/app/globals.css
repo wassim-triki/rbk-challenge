@@ -50,3 +50,9 @@
     --ring: 263.4 70% 50.4%;
   }
 }
+
+.draggable + button > span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

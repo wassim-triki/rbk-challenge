@@ -12,7 +12,7 @@ const LinkPagesLayout = ({ children }: { children: React.ReactNode }) => {
   const formId = pathname.includes("profile")
     ? "profile-form"
     : pathname.includes("link")
-    ? "link-form"
+    ? "links-form"
     : "";
   return (
     <main className="">

@@ -156,12 +156,6 @@ const ProfileForm = () => {
             />
           ))}
         </div>
-
-        {/* <div className="flex justify-end">
-          <Button className="ml-auto px-5" type="submit">
-            Save
-          </Button>
-        </div> */}
       </form>
     </Form>
   );
