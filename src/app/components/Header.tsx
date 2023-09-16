@@ -22,7 +22,7 @@ const Header = () => {
   const inPreview = pathname === "/preview";
   return (
     <Container>
-      <header className="bg-white border p-3 rounded-xl overflow-hidden col-span-2 ">
+      <header className="bg-white border p-3 rounded-xl overflow-hidden col-span-2 z-[999] relative">
         <div className="flex items-center justify-between">
           {inPreview ? (
             <Button asChild size={"sm"} variant={"outline"}>

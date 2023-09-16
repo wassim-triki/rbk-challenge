@@ -40,11 +40,11 @@ const getIconForPlatform = (platform: string) => {
 };
 
 const LinksForm = () => {
-  const { list, setList } = useItems();
+  const { list, setList, setSavedList } = useItems();
   type Errors = { [key: string]: string[] };
   const [linkErrors, setLinkErrors] = useState<Errors>({});
 
-  const validateLinks = () => {
+  const validateLinks = (): Errors => {
     const newErrors: Errors = {};
 
     list.forEach((item) => {
@@ -52,22 +52,22 @@ const LinksForm = () => {
         linkSchema.parse(item);
       } catch (error) {
         if (error instanceof z.ZodError) {
-          console.log(error.issues);
           newErrors[item.id] = error.issues.map((issue) => issue.message);
         }
       }
     });
-    console.log(newErrors);
-    setLinkErrors(newErrors);
+    return newErrors;
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    validateLinks();
+    const validationErrors = validateLinks();
+    setLinkErrors(validationErrors); // This will update the state for UI feedback
 
-    if (Object.keys(linkErrors).length === 0) {
-      // No validation errors
+    if (Object.keys(validationErrors).length === 0) {
+      setSavedList(JSON.parse(JSON.stringify(list)));
+
       toast({
         title: "You submitted the following values:",
         description: (
@@ -76,6 +76,8 @@ const LinksForm = () => {
           </pre>
         ),
       });
+    } else {
+      // Handle or display validation errors accordingly
     }
   };
 

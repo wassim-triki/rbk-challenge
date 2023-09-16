@@ -33,6 +33,7 @@ type ItemsState = {
   list: LinkItem[];
   savedList: LinkItem[];
   setList: React.Dispatch<React.SetStateAction<LinkItem[]>>;
+  setSavedList: React.Dispatch<React.SetStateAction<LinkItem[]>>;
 };
 
 const initialState: AppState = {
@@ -44,6 +45,7 @@ const initialState: AppState = {
     list: [],
     savedList: [],
     setList: () => {},
+    setSavedList: () => {},
   },
 };
 
