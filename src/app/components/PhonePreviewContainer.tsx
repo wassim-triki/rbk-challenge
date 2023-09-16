@@ -6,6 +6,7 @@ import { useItems, useUser } from "../context";
 import { linkPreviews, socialIcons } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import Avatar from "./Avatar";
+import Link from "next/link";
 const PhonePreviewContainer = () => {
   const { profile, setProfile } = useUser();
   const { list, savedList } = useItems();
@@ -36,7 +37,8 @@ const PhonePreviewContainer = () => {
               const IconComponent = preview.icon;
 
               return (
-                <div
+                <a
+                  href={item.link}
                   style={{ backgroundColor: preview.bg }}
                   className={`w-full h-10 rounded-lg flex items-center text-white px-3 py-2 gap-2`}
                   key={index}
@@ -44,7 +46,7 @@ const PhonePreviewContainer = () => {
                   <IconComponent className="w-4 h-4" />
                   <span className="text-xs">{item.platform}</span>
                   <ArrowRight className="ml-auto w-4 h-4" />
-                </div>
+                </a>
               );
             } else {
               return (
