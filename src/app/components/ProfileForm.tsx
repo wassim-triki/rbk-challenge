@@ -37,14 +37,27 @@ const FormSchema = z.object({
     ),
   images: z.array(z.unknown()).optional(),
 });
-
+type ProfileFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  profilePicture?: File | null;
+};
 const ProfileForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
-
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    const formData: ProfileFormData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      profilePicture: null,
+    };
+    if (data.images && data.images.length > 0) {
+      formData.profilePicture = data.images[0] as File;
+    }
+    console.log(formData);
     toast({
       title: "You submitted the following values:",
       description: (

@@ -6,11 +6,7 @@ import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
 import path from "path";
 const NavLinks = () => {
-  const router = useRouter();
   const pathname = usePathname();
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
 
   const links = [
     {
