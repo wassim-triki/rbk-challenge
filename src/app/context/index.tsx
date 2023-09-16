@@ -16,7 +16,7 @@ export type ProfileFormData = {
   profilePicture?: File | null;
 };
 
-type LinkItem = {
+export type LinkItem = {
   platform: SocialPlatforms;
   link: string;
 };
