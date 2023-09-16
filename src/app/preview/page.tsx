@@ -9,10 +9,10 @@ const page = () => {
   const { profile, setProfile } = useUser();
   const { list } = useItems();
   return (
-    <div className="h-screen w-full ">
+    <div className="h-screen w-full">
       <div className="absolute top-0 left-0 bg-primary h-1/3 w-full -z-20 rounded-b-3xl shadow-md"></div>
 
-      <div className="bg-white absolute top-1/2 left-1/2 -translate-y-[41%] -translate-x-1/2 shadow-lg rounded-3xl p-10 w-11/12 flex flex-col items-center gap-10">
+      <div className="bg-white absolute top-1/2 left-1/2 -translate-y-[41%] -translate-x-1/2 shadow-lg rounded-3xl p-10 w-11/12 sm:max-w-[350px] flex flex-col items-center gap-10">
         <Avatar
           src={
             profile?.profilePicture

@@ -40,7 +40,7 @@ const getIconForPlatform = (platform: string) => {
 };
 
 const LinksForm = () => {
-  const { list, setList, setSavedList } = useItems();
+  const { list, setList, setSavedList, savedList } = useItems();
   type Errors = { [key: string]: string[] };
   const [linkErrors, setLinkErrors] = useState<Errors>({});
 
@@ -112,7 +112,12 @@ const LinksForm = () => {
   return (
     <DragDropContext onDragEnd={handleDragDrop}>
       <div className="flex flex-col gap-5">
-        <Button onClick={handleAddItem} variant="outline" className="w-full">
+        <Button
+          disabled={list.length >= 5 || savedList.length >= 5}
+          onClick={handleAddItem}
+          variant="outline"
+          className="w-full"
+        >
           + Add new link
         </Button>
         <form onSubmit={onSubmit} id="links-form">
