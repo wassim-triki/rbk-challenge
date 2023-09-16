@@ -236,7 +236,10 @@ const LinksForm = () => {
                                 ></Input>
                               </div>
                               {linkErrors[item.id]?.map((error) => (
-                                <p className="text-red-500 font-medium text-xs">
+                                <p
+                                  key={`error-${item.id}-${error}`}
+                                  className="text-red-500 font-medium text-xs"
+                                >
                                   {error}
                                 </p>
                               ))}
