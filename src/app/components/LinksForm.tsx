@@ -101,10 +101,10 @@ const LinksForm = () => {
                           className="flex flex-col gap-0 rounded-lg bg-gray-100 p-4 pt-0 "
                         >
                           <div className="rounded-lg text-muted-foreground">
-                            <div className="draggable flex justify-between">
+                            <div className="draggable flex justify-between mb-1">
                               <Button
                                 type="button"
-                                className="flex text-xs font-bold p-0 items-center gap-1"
+                                className="flex text-sm font-bold p-0 items-center gap-1"
                                 variant="ghost"
                               >
                                 <Bars2Icon className="w-4 h-4" />
@@ -117,7 +117,7 @@ const LinksForm = () => {
                                   newList.splice(index, 1);
                                   setList(newList);
                                 }}
-                                className="text-xs p-0"
+                                className="text-sm p-0"
                                 variant="ghost"
                               >
                                 Remove
@@ -128,7 +128,13 @@ const LinksForm = () => {
                                 Platform
                               </FormLabel> */}
 
-                            <div className="flex flex-col gap-5">
+                            <div className="flex flex-col gap-3">
+                              <label
+                                className="mb-[-8px] text-xs"
+                                htmlFor={`select-trigger-${item.id}`}
+                              >
+                                Platform
+                              </label>
                               <Select
                                 value={item.platform}
                                 onValueChange={(value) => {
@@ -140,7 +146,7 @@ const LinksForm = () => {
                                   }
                                 }}
                               >
-                                <SelectTrigger>
+                                <SelectTrigger id={`select-trigger-${item.id}`}>
                                   {item.platform ? (
                                     <div className="flex items-center gap-2">
                                       {React.createElement(
@@ -168,7 +174,14 @@ const LinksForm = () => {
                                 </SelectContent>
                               </Select>
 
+                              <label
+                                className="mb-[-8px] text-xs"
+                                htmlFor={`link-${item.id}`}
+                              >
+                                Link
+                              </label>
                               <Input
+                                id={`link-${item.id}`}
                                 className="text-muted-foreground transition"
                                 placeholder={"Enter link"}
                                 value={item.link}
