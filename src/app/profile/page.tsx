@@ -2,6 +2,7 @@ import React from "react";
 import LinkPagesLayout from "../components/LinkPagesLayout";
 import ProfileForm from "../components/ProfileForm";
 import SectionLayout from "../components/SectionLayout";
+import { Button } from "../components/ui/button";
 
 const page = () => {
   return (

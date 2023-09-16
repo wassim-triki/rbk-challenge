@@ -123,6 +123,7 @@ const ProfileForm = () => {
     <Form {...form}>
       <form
         className="flex flex-col gap-5"
+        id="profile-form"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <ImageUpload accept={accept} name="images" label="Profile picture" />
@@ -156,11 +157,11 @@ const ProfileForm = () => {
           ))}
         </div>
 
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <Button className="ml-auto px-5" type="submit">
             Save
           </Button>
-        </div>
+        </div> */}
       </form>
     </Form>
   );
