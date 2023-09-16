@@ -26,8 +26,9 @@ import {
 } from "./ui/select";
 import { socialLinks } from "@/lib/data";
 import { Input } from "./ui/input";
+import { useItems } from "../context";
 
-enum SocialPlatforms {
+export enum SocialPlatforms {
   Github = "Github",
   Youtube = "Youtube",
   LinkedIn = "LinkedIn",
@@ -65,6 +66,8 @@ const LinksForm = () => {
     name: "links",
   });
 
+  const { setList } = useItems();
+
   const onSubmit = (data: any) => {
     toast({
       title: "You submitted the following values:",
@@ -74,6 +77,7 @@ const LinksForm = () => {
         </pre>
       ),
     });
+    setList(data.links);
   };
   const getIconForPlatform = (platform: string) => {
     const socialLinkItem = socialLinks.find(
