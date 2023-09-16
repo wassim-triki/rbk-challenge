@@ -41,10 +41,18 @@ const FormSchema = z.object({
 });
 
 const ProfileForm = () => {
+  const { setProfile, profile } = useUser();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      firstName: profile?.firstName || "",
+      lastName: profile?.lastName || "",
+      email: profile?.email || "",
+      images: profile?.profilePicture ? [profile.profilePicture] : [],
+    },
   });
-  const { setProfile } = useUser();
+
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     let profilePictureFile: File | null = null;
     if (data.images && data.images.length > 0) {
