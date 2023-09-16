@@ -16,6 +16,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
+import ImageUpload from "./ImageUpload";
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -33,6 +34,9 @@ const FormSchema = z.object({
         message: "Invalid email format",
       }
     ),
+  images: z
+    .array(z.unknown())
+    .refine((val) => val.length > 0, "File is required"),
 });
 
 const ProfileForm = () => {
@@ -41,6 +45,7 @@ const ProfileForm = () => {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
     toast({
       title: "You submitted the following values:",
       description: (
@@ -83,12 +88,18 @@ const ProfileForm = () => {
     },
   ];
 
+  const accept = {
+    "image/png": [".png"],
+    "image/jpeg": [".jpeg", ".jpg"],
+  };
+
   return (
     <Form {...form}>
       <form
         className="flex flex-col gap-4"
         onSubmit={form.handleSubmit(onSubmit)}
       >
+        <ImageUpload accept={accept} name="images" />
         <div className="flex flex-col gap-1 rounded-lg bg-muted p-4">
           {inputs.map(({ name, label, required, placeholder }) => (
             <FormField
