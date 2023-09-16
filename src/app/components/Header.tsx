@@ -1,16 +1,21 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "./Container";
 import { LinkIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import NavLinks from "./NavLinks";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import path from "path";
+import { useUser } from "../context";
 
 const Header = () => {
   const pathname = usePathname();
+  const user = useUser();
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   const inPreview = pathname === "/preview";
   return (
     <Container>

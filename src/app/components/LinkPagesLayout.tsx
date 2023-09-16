@@ -10,12 +10,12 @@ const LinkPagesLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="w-full h-ful border p-4 flex-1  rounded-xl bg-white ">
             <div className="bg-red-50s0 m-16">
               <Image
-                className="w-full object-cover opacity-60"
+                className="w-full object-cover"
                 src={"/iphone.png"}
                 alt="iphone"
-                width={100}
-                height={100}
-                quality={95}
+                width={1080}
+                height={1080}
+                quality={100}
               />
             </div>
           </div>

@@ -18,6 +18,7 @@ import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 import ImageUpload from "./ImageUpload";
 import { useEffect } from "react";
+import { ProfileFormData, useUser } from "../context";
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -37,16 +38,12 @@ const FormSchema = z.object({
     ),
   images: z.array(z.unknown()).optional(),
 });
-type ProfileFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  profilePicture?: File | null;
-};
+
 const ProfileForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
+  const { setProfile } = useUser();
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const formData: ProfileFormData = {
       firstName: data.firstName,
@@ -57,7 +54,8 @@ const ProfileForm = () => {
     if (data.images && data.images.length > 0) {
       formData.profilePicture = data.images[0] as File;
     }
-    console.log(formData);
+    setProfile(formData);
+    // console.log(formData);
     toast({
       title: "You submitted the following values:",
       description: (
