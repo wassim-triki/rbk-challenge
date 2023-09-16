@@ -15,18 +15,18 @@ const PhonePreviewContainer = () => {
     console.log("saved:", savedList);
   }, [list, savedList]);
   return (
-    <div className=" sm:m-16 m-0 relative">
+    <div className="sm:m-16 m-0 relative">
       <Image
-        className="w-2/5 sm:w-full object-cover mx-auto"
+        className="w-2/5 misn-w-[230px] sm:w-full object-cover mx-auto"
         src={"/iphone.png"}
         alt="iphone"
         width={1080}
         height={1080}
         quality={100}
       />
-      <div className="bg-resd-500/50 absolute inset-0 w-2/5 sm:w-full h-full sm:p-10 p-0 flex flex-col gap-[3.25rem] mx-auto">
+      <div className="absolute inset-0 w-2/5 sm:w-full h-full sm:p-5 md:p-10 p-0 flex flex-col gap-3 mx-auto">
         <Avatar />
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-shrink mt-[1vw] flex-col h-full gap-2">
           {Array.from({ length: 5 }).map((_, index) => {
             const item = savedList[index];
             const platform =
@@ -40,20 +40,20 @@ const PhonePreviewContainer = () => {
                 <a
                   href={item.link}
                   style={{ backgroundColor: preview.bg }}
-                  className={`w-full h-10 rounded-lg flex items-center text-white px-3 py-2 gap-2`}
+                  className="w-full h-[2.5vw] rounded-lg flex items-center text-white max-h-[40px] px-3 py-1 gap-2"
                   key={index}
                 >
-                  <IconComponent className="w-4 h-4" />
-                  <span className="text-xs">{item.platform}</span>
-                  <ArrowRight className="ml-auto w-4 h-4" />
+                  <IconComponent className="w-[1.5vw] h-[1.5vw]" />
+                  <span className="text-[1vw]">{item.platform}</span>
+                  <ArrowRight className="ml-auto w-[1.5vw] h-[1.5vw]" />
                 </a>
               );
             } else {
               return (
-                <div
-                  className="w-full h-10 bg-gray-200/70 rounded-lg"
+                <Skeleton
                   key={index}
-                ></div>
+                  className="w-full h-[2vw] rounded-lg bg-gray-200/70 mt-[1vw]"
+                />
               );
             }
           })}
