@@ -17,6 +17,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 import ImageUpload from "./ImageUpload";
+import { useEffect } from "react";
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -34,9 +35,7 @@ const FormSchema = z.object({
         message: "Invalid email format",
       }
     ),
-  images: z
-    .array(z.unknown())
-    .refine((val) => val.length > 0, "File is required"),
+  images: z.array(z.unknown()).optional(),
 });
 
 const ProfileForm = () => {
@@ -96,10 +95,10 @@ const ProfileForm = () => {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-5"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <ImageUpload accept={accept} name="images" />
+        <ImageUpload accept={accept} name="images" label="Profile picture" />
         <div className="flex flex-col gap-1 rounded-lg bg-muted p-4">
           {inputs.map(({ name, label, required, placeholder }) => (
             <FormField

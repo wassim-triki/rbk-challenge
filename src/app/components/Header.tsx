@@ -8,8 +8,8 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="bg-white border p-3 rounded-xl overflow-hidden col-span-2 ">
-      <Container>
+    <Container>
+      <header className="bg-white border p-3 rounded-xl overflow-hidden col-span-2 ">
         <div className="flex items-center justify-between">
           <Link href={"/"}>
             <Image
@@ -26,8 +26,8 @@ const Header = () => {
             Preview
           </Button>
         </div>
-      </Container>
-    </header>
+      </header>
+    </Container>
   );
 };
 

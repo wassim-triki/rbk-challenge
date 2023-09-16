@@ -5,7 +5,7 @@ import ProfileForm from "../components/ProfileForm";
 const page = () => {
   return (
     <LinkPagesLayout>
-      <div className="p-4 flex flex-col">
+      <div className="p-4 flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <h2 className="font-bold text-3xl">Profile Details</h2>
           <p className="text-sm text-muted-foreground">
