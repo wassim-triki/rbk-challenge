@@ -31,6 +31,7 @@ type UserState = {
 };
 type ItemsState = {
   list: LinkItem[];
+  savedList: LinkItem[];
   setList: React.Dispatch<React.SetStateAction<LinkItem[]>>;
 };
 
@@ -41,6 +42,7 @@ const initialState: AppState = {
   },
   items: {
     list: [],
+    savedList: [],
     setList: () => {},
   },
 };
@@ -55,6 +57,7 @@ type AppState = {
 export const AppProvider = (props: PropsWithChildren) => {
   const [profile, setProfile] = useState<ProfileState>(null);
   const [list, setList] = useState<LinkItem[]>([]);
+  const [savedList, setSavedList] = useState<LinkItem[]>([]);
 
   const user = {
     profile,
@@ -64,6 +67,8 @@ export const AppProvider = (props: PropsWithChildren) => {
   const items = {
     list,
     setList,
+    savedList,
+    setSavedList,
   };
 
   return (

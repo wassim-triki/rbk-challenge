@@ -24,7 +24,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "./ui/select";
 import { socialLinks } from "@/lib/data";
 import { Input } from "./ui/input";
 import { LinkItem, useItems } from "../context";
-
+import { Link as LinkLucid } from "lucide-react";
 const getIconForPlatform = (platform: string) => {
   const socialLinkItem = socialLinks.find((item) => item.platform === platform);
   return socialLinkItem ? socialLinkItem.icon : null;
@@ -123,10 +123,6 @@ const LinksForm = () => {
                                 Remove
                               </Button>
                             </div>
-                            {/* <FormItem>
-                              <FormLabel className="flex-1 text-muted-foreground font-normal text-xs">
-                                Platform
-                              </FormLabel> */}
 
                             <div className="flex flex-col gap-3">
                               <label
@@ -180,20 +176,23 @@ const LinksForm = () => {
                               >
                                 Link
                               </label>
-                              <Input
-                                id={`link-${item.id}`}
-                                className="text-muted-foreground transition"
-                                placeholder={"Enter link"}
-                                value={item.link}
-                                onChange={(e) => {
-                                  const newList = [...list];
-                                  if (index >= 0 && index < newList.length) {
-                                    const item = newList[index] as LinkItem;
-                                    item.link = e.target.value;
-                                    setList(newList);
-                                  }
-                                }}
-                              />
+                              <div className="relative">
+                                <LinkLucid className="absolute top-0 bottom-0 w-3 h-3 my-auto left-3" />
+                                <Input
+                                  id={`link-${item.id}`}
+                                  className="text-muted-foreground transition pl-9 pr-4"
+                                  placeholder={"Enter link"}
+                                  value={item.link}
+                                  onChange={(e) => {
+                                    const newList = [...list];
+                                    if (index >= 0 && index < newList.length) {
+                                      const item = newList[index] as LinkItem;
+                                      item.link = e.target.value;
+                                      setList(newList);
+                                    }
+                                  }}
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
