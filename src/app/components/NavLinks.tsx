@@ -21,7 +21,7 @@ const NavLinks = () => {
     },
   ];
   return (
-    <nav className="flex gap-4">
+    <nav className="hidden gap-4 sm:flex">
       {links.map((link) => (
         <Button
           key={link.href}

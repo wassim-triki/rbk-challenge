@@ -18,10 +18,10 @@ const LinkPagesLayout = ({ children }: { children: React.ReactNode }) => {
     <main className="">
       <Container>
         <div className="sm:flex-row  h-full flex flex-col-reverse gsap-2  sm:gap-5 mt-2 sm:mt-5">
-          <div className="w-full hidden sm:block sm:h-full border p-4 flex-1  rounded-xl bg-white mb-2 sm:mb-0 overflow-hidden">
+          <div className="w-full hidden sm:block sm:h-full bordser p-4 flex-1  rounded-xl bg-white mb-2 sm:mb-0 overflow-hidden">
             <PhonePreviewContainer />
           </div>
-          <div className="w-full h-fsull border psdf-4 flex-[2]  rounded-xl bg-white flex flex-col  ">
+          <div className="w-full h-fsull bosrder psdf-4 flex-[2]  rounded-xl bg-white flex flex-col  ">
             {children}
             <div className="mt-auto flex justify-end sm:pt-5 sm:px-8 sm:pb-9 bg-resd-500 border-t p-4">
               <Button
