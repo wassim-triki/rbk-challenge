@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import {
   Form,
@@ -25,6 +25,15 @@ import { socialLinks } from "@/lib/data";
 import { Input } from "./ui/input";
 import { LinkItem, useItems } from "../context";
 import { Link as LinkLucid } from "lucide-react";
+
+const linkSchema = z.object({
+  platform: z.string(),
+  link: z
+    .string()
+    .url("Please add valid link.")
+    .nonempty("Link cannot be empty."),
+});
+
 const getIconForPlatform = (platform: string) => {
   const socialLinkItem = socialLinks.find((item) => item.platform === platform);
   return socialLinkItem ? socialLinkItem.icon : null;
@@ -32,17 +41,42 @@ const getIconForPlatform = (platform: string) => {
 
 const LinksForm = () => {
   const { list, setList } = useItems();
+  type Errors = { [key: string]: string[] };
+  const [linkErrors, setLinkErrors] = useState<Errors>({});
+
+  const validateLinks = () => {
+    const newErrors: Errors = {};
+
+    list.forEach((item) => {
+      try {
+        linkSchema.parse(item);
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          console.log(error.issues);
+          newErrors[item.id] = error.issues.map((issue) => issue.message);
+        }
+      }
+    });
+    console.log(newErrors);
+    setLinkErrors(newErrors);
+  };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(list, null, 2)}</code>
-        </pre>
-      ),
-    });
+
+    validateLinks();
+
+    if (Object.keys(linkErrors).length === 0) {
+      // No validation errors
+      toast({
+        title: "You submitted the following values:",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(list, null, 2)}</code>
+          </pre>
+        ),
+      });
+    }
   };
 
   const handleAddItem = () => {
@@ -52,7 +86,7 @@ const LinksForm = () => {
       initIndex: list.length,
       id: uuid(),
     };
-    const updatedList = [...list, newItem];
+    const updatedList = [newItem, ...list];
     setList(updatedList);
   };
 
@@ -160,7 +194,7 @@ const LinksForm = () => {
                                   {socialLinks.map(
                                     ({ platform, icon: Icon }) => (
                                       <SelectItem
-                                        key={`select-${item.id}`}
+                                        key={`select-${item.id}-${platform}}`}
                                         value={platform}
                                       >
                                         <Icon className="w-4 h-4" />
@@ -178,13 +212,14 @@ const LinksForm = () => {
                                 Link
                               </label>
                               <div className="relative">
-                                <LinkLucid className="absolute top-0 bottom-0 w-3 h-3 my-auto left-3" />
+                                <LinkLucid className="absolute top-0 bottom-0 w-3 h-full my-auto left-3" />
                                 <Input
                                   id={`link-${item.id}`}
-                                  className="text-muted-foreground transition pl-9 pr-4"
-                                  placeholder={"Enter link"}
+                                  className="text-muted-foreground transition pl-9 pr-4 m"
+                                  placeholder={`Add link to ${item.platform}`}
                                   value={item.link}
                                   onChange={(e) => {
+                                    validateLinks();
                                     const newList = [...list];
                                     if (index >= 0 && index < newList.length) {
                                       const item = newList[index] as LinkItem;
@@ -192,8 +227,13 @@ const LinksForm = () => {
                                       setList(newList);
                                     }
                                   }}
-                                />
+                                ></Input>
                               </div>
+                              {linkErrors[item.id]?.map((error) => (
+                                <p className="text-red-500 font-medium text-xs">
+                                  {error}
+                                </p>
+                              ))}
                             </div>
                           </div>
                         </div>

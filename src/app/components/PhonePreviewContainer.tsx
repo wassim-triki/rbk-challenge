@@ -2,10 +2,12 @@
 import Image from "next/image";
 import React from "react";
 import { Skeleton } from "./ui/skeleton";
-import { useUser } from "../context";
-
+import { useItems, useUser } from "../context";
+import { linkPreviews, socialIcons } from "@/lib/data";
+import { ArrowRight } from "lucide-react";
 const PhonePreviewContainer = () => {
   const { profile, setProfile } = useUser();
+  const { list } = useItems();
   return (
     <div className=" m-16 relative">
       <Image
@@ -45,11 +47,35 @@ const PhonePreviewContainer = () => {
           )}
         </div>
         <div className="flex flex-col gap-4">
-          <div className="w-full h-10 bg-gray-200/70 rounded-lg "></div>
-          <div className="w-full h-10 bg-gray-200/70 rounded-lg "></div>
-          <div className="w-full h-10 bg-gray-200/70 rounded-lg "></div>
-          <div className="w-full h-10 bg-gray-200/70 rounded-lg "></div>
-          <div className="w-full h-10 bg-gray-200/70 rounded-lg "></div>
+          {Array.from({ length: 5 }).map((_, index) => {
+            const item = list[index];
+            const platform =
+              item?.platform.toLowerCase() as keyof typeof linkPreviews;
+            const preview = linkPreviews[platform];
+
+            if (item && preview) {
+              const IconComponent = preview.icon;
+
+              return (
+                <div
+                  style={{ backgroundColor: preview.bg }}
+                  className={`w-full h-10 rounded-lg flex items-center text-white px-3 py-2 gap-2`}
+                  key={index}
+                >
+                  <IconComponent className="w-4 h-4" />
+                  <span className="text-xs">{item.platform}</span>
+                  <ArrowRight className="ml-auto w-4 h-4" />
+                </div>
+              );
+            } else {
+              return (
+                <div
+                  className="w-full h-10 bg-gray-200/70 rounded-lg"
+                  key={index}
+                ></div>
+              );
+            }
+          })}
         </div>
       </div>
     </div>
