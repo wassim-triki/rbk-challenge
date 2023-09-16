@@ -19,6 +19,7 @@ import { toast } from "./ui/use-toast";
 import ImageUpload from "./ImageUpload";
 import { useEffect } from "react";
 import { ProfileFormData, useUser } from "../context";
+import { localImageToFile } from "@/lib/utils";
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -44,16 +45,23 @@ const ProfileForm = () => {
     resolver: zodResolver(FormSchema),
   });
   const { setProfile } = useUser();
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    let profilePictureFile: File | null = null;
+    if (data.images && data.images.length > 0) {
+      profilePictureFile = data.images[0] as File;
+    } else {
+      profilePictureFile = await localImageToFile(
+        "/profile-picture-placeholder.png",
+        "profile-picture-placeholder.png"
+      );
+    }
     const formData: ProfileFormData = {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
-      profilePicture: null,
+      profilePicture: profilePictureFile,
     };
-    if (data.images && data.images.length > 0) {
-      formData.profilePicture = data.images[0] as File;
-    }
+
     setProfile(formData);
     // console.log(formData);
     toast({

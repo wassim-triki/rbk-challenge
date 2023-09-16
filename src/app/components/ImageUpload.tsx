@@ -7,10 +7,13 @@ import { Image as ImageIcon } from "lucide-react";
 import { ArrowDownToLine } from "lucide-react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { FormMessage } from "./ui/form";
+import { useUser } from "../context";
 const ImageUpload = (props: any) => {
   const { register, unregister, setValue, watch } = useFormContext();
 
   const { name, label, accept } = props;
+
+  const { profile } = useUser();
 
   const files = watch(name);
 
@@ -51,7 +54,7 @@ const ImageUpload = (props: any) => {
           }`}
         >
           <label
-            htmlFor="name"
+            htmlFor={name}
             className="flex-1 text-sm text-muted-foreground font-normal"
           >
             {label}
@@ -63,10 +66,12 @@ const ImageUpload = (props: any) => {
                 src={
                   !!files?.length
                     ? URL.createObjectURL(files[0])
+                    : profile && profile.profilePicture instanceof File
+                    ? URL.createObjectURL(profile.profilePicture)
                     : "/profile-picture-placeholder.png"
                 }
                 alt="profile picture"
-                className="w-full object-cover"
+                className="w-full h-full object-cover"
                 width={100}
                 height={100}
                 quality={95}
