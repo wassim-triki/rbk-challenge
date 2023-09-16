@@ -81,7 +81,7 @@ const ImageUpload = (props: any) => {
                   <>
                     <PhotoIcon className="w-8 h-8" />
                     <p className="text-center text-sm">
-                      Click or drag 'n' drop to select image
+                      Click or drag &apos;n&apos; drop to select image
                     </p>
                   </>
                 )}
