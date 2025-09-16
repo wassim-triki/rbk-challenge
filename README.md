@@ -1,4 +1,4 @@
-# RBK Frontend Challenge
+# RBK Frontend Challenge (2nd Place 🥈)
 
 The challenge is to design a link sharing application based on the design provided, with emphasis on developing the frontend part of the web application, without using an API or database.
 
